@@ -1,11 +1,11 @@
 import React from 'react';
-import { useEffect, Suspense, lazy } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import ContactsPage from 'pages/ContactsPage/ContactsPage';
 import HomePage from 'pages/HomePage/HomePage';
-import PrivateRoute from './PrivateRoute';
-import PublicRoute from './PublicRoute';
+// import PrivateRoute from './PrivateRoute';
+// import PublicRoute from './PublicRoute';
 
 import AppBar from './AppBar';
 import LoginPage from 'pages/LoginPage/LoginPage';
