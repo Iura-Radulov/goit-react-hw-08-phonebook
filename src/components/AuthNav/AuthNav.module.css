@@ -5,6 +5,6 @@
   font-weight: 700;
   color: '#2A363B';
 }
-.activeLink {
-  color: #e84a5f;
+.link.active {
+  color: #2196f3;
 }
