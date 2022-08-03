@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations';
 import styles from './LoginPage.module.css';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -27,22 +29,37 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
-      <h1>Страница логина</h1>
-
-      <form onSubmit={handleSubmit} className={styles.form} autoComplete="off">
-        <label className={styles.label}>
-          Почта
-          <input type="email" name="email" value={email} onChange={handleChange} />
-        </label>
-
-        <label className={styles.label}>
-          Пароль
-          <input type="password" name="password" value={password} onChange={handleChange} />
-        </label>
-
-        <button type="submit">Войти</button>
-      </form>
+    <div className={styles.container}>
+      {/* <Container>
+       <Row className="justify-content-center"> */}
+      <div className={styles.form}>
+        <h1>Login page</h1>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="email">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="Enter email"
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={handleChange}
+              placeholder="Password"
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </div>
+      {/* </Row>
+    </Container> */}
     </div>
   );
 }
