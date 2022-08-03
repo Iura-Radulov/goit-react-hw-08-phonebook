@@ -48,5 +48,4 @@ export const store = configureStore({
 
 setupListeners(store.dispatch);
 
-// export default store;
 export const persistor = persistStore(store);

@@ -5,7 +5,7 @@ import ContactList from 'components/ContactList';
 export default function ContactsPage() {
   return (
     <div className="container">
-      <h2 className="title">Phonebook</h2>
+      <h2 className="title">Phone book</h2>
       <ContactForm />
       <div>
         <h2 className="title">Contacts</h2>
