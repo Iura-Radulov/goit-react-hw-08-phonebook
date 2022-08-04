@@ -2,23 +2,30 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getFilter } from 'redux/contactSelectors';
 import { changeFilter } from 'redux/contactSlice';
-import s from './Filter.module.css';
+import { Box, FormControl, FormLabel, TextField } from '@mui/material';
 
 const Filter = () => {
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
   return (
-    <div className={s.block}>
-      <p>Find contact by name</p>
-      <input
-        type="text"
-        name="filter"
-        className={s.input}
-        value={filter}
-        onChange={evt => dispatch(changeFilter(evt.target.value))}
-      />
-    </div>
+    <Box
+      sx={{
+        paddingBottom: 4,
+        paddingTop: 3,
+      }}
+    >
+      <FormControl>
+        <FormLabel>Find contact by name</FormLabel>
+        <TextField
+          type="text"
+          name="filter"
+          size="small"
+          value={filter}
+          onChange={evt => dispatch(changeFilter(evt.target.value))}
+        />
+      </FormControl>
+    </Box>
   );
 };
 

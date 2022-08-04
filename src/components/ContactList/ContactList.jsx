@@ -19,11 +19,12 @@ const ContactList = () => {
     <div>
       {visibleNames && (
         <ul className={s.list}>
-          {visibleNames.map(({ id, phone, name }) => (
-            <ContactItem key={id} name={name} phone={phone} id={id} />
+          {visibleNames.map(({ id, number, name }) => (
+            <ContactItem key={id} name={name} phone={number} id={id} />
           ))}
         </ul>
       )}
+      {contacts?.length === 0 && <p>There are no contacts</p>}
       {isLoading && <Oval width={80} height={80} />}
     </div>
   );

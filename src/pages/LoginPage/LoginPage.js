@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations';
 import styles from './LoginPage.module.css';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+
+import { Box, FormGroup, FormControl, FormLabel, TextField, Button } from '@mui/material';
 
 export default function LoginPage() {
   const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -33,30 +34,44 @@ export default function LoginPage() {
       {/* <Container>
        <Row className="justify-content-center"> */}
       <div className={styles.form}>
-        <h1>Login page</h1>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="email">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              value={email}
-              onChange={handleChange}
-              placeholder="Enter email"
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              value={password}
-              onChange={handleChange}
-              placeholder="Password"
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
+        <Box
+          onSubmit={handleSubmit}
+          component="form"
+          sx={{
+            '& > :not(style)': { m: 1 },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <h1>Login page</h1>
+          <FormGroup>
+            <FormControl>
+              <FormLabel>Email address</FormLabel>
+
+              <TextField
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleChange}
+                label="Enter email"
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Password</FormLabel>
+
+              <TextField
+                type="password"
+                name="password"
+                value={password}
+                onChange={handleChange}
+                label="Password"
+              />
+            </FormControl>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </FormGroup>
+        </Box>
       </div>
       {/* </Row>
     </Container> */}

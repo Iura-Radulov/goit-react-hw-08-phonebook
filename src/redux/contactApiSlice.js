@@ -6,11 +6,9 @@ export const contactApi = createApi({
     baseUrl: 'https://connections-api.herokuapp.com/',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
-      console.log(token);
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
       }
-      console.log(headers);
       return headers;
     },
   }),
@@ -21,13 +19,13 @@ export const contactApi = createApi({
       providesTags: ['Contact'],
     }),
     addContact: builder.mutation({
-      query(name, phone) {
+      query({ name, number }) {
         return {
           url: `/contacts`,
           method: 'POST',
           body: {
             name,
-            phone,
+            number,
           },
         };
       },
