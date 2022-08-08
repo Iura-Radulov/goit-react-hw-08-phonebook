@@ -2,6 +2,7 @@ import { useDeleteContactMutation } from 'redux/contactApiSlice';
 import PropTypes from 'prop-types';
 import s from './ContactItem.module.css';
 import { Oval } from 'react-loader-spinner';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const ContactItem = ({ name, phone, id }) => {
   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
@@ -11,7 +12,7 @@ const ContactItem = ({ name, phone, id }) => {
       <span className={s.phone}>{phone}</span>
       <button className={s.deleteBtn} disabled={isDeleting} onClick={() => deleteContact(id)}>
         {isDeleting && <Oval width={15} height={15} />}
-        <span className={s.deleteText}>Delete</span>
+        <DeleteIcon />
       </button>
     </li>
   );

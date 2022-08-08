@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useFetchContactsQuery, useAddContactMutation } from 'redux/contactApiSlice';
-import s from './ContactForm.module.css';
+
 import toast, { Toaster } from 'react-hot-toast';
 import { Oval } from 'react-loader-spinner';
 import { Box, FormGroup, FormControl, FormLabel, TextField, Button } from '@mui/material';
@@ -24,7 +24,7 @@ const ContactForm = () => {
       resetValue();
       return;
     }
-    console.log(name, number);
+
     addContact({ name, number });
     toast.success('Contact created with success');
     resetValue();
@@ -33,9 +33,10 @@ const ContactForm = () => {
   return (
     <Box
       component="form"
+      validate
       sx={{
-        // display: 'flex',
         width: 250,
+        maxWidth: '100%',
         height: 300,
         margin: 0,
       }}
@@ -43,7 +44,7 @@ const ContactForm = () => {
     >
       <FormGroup>
         <FormControl>
-          <FormLabel className={s.label}>Name </FormLabel>
+          <FormLabel>Name </FormLabel>
           <TextField
             sx={{ marginBottom: 5 }}
             size="small"
@@ -51,24 +52,25 @@ const ContactForm = () => {
             name="name"
             value={name}
             onChange={e => setName(e.target.value)}
-            id="outlined-error-helper-text"
-            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            id="outlined-name"
+            inputProps={{
+              pattern: "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
+              title:
+                "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan",
+            }}
             required
           />
         </FormControl>
         <FormControl>
-          <FormLabel className={s.label}>Number </FormLabel>
+          <FormLabel>Number </FormLabel>
           <TextField
             sx={{ marginBottom: 5 }}
             size="small"
             type="tel"
+            id="standard-tel-input"
             name="number"
             value={number}
             onChange={e => setNumber(e.target.value)}
-            id="outlined-error-helper-text"
-            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
 
@@ -80,7 +82,7 @@ const ContactForm = () => {
             type="submit"
           >
             <span>{isLoading && <Oval width={15} height={15} />}</span>
-            <span className={s.buttonLabel}>Add contact</span>
+            <span>Add contact</span>
           </Button>
           <Toaster />
         </FormControl>

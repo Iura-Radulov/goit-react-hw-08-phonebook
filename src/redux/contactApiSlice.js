@@ -43,4 +43,4 @@ export const contactApi = createApi({
 
 export const { useFetchContactsQuery, useAddContactMutation, useDeleteContactMutation } =
   contactApi;
-// baseUrl: 'https://62de460079b9f8c30ab61bac.mockapi.io/'
+

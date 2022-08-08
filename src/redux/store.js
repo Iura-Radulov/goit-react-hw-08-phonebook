@@ -15,13 +15,6 @@ import { contactApi } from './contactApiSlice';
 import { filterReducer } from './contactSlice';
 import authReducer from 'redux/auth/auth-slice';
 
-// const middleware = [
-//   ...getDefaultMiddleware({
-//     serializableCheck: {
-//       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//     },
-//   }),
-// ];
 
 const authPersistConfig = {
   key: 'auth',

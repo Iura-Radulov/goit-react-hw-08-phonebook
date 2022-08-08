@@ -1,17 +1,50 @@
-import { Box } from '@mui/material';
+import { Box, Link } from '@mui/material';
+import authSelectors from 'redux/auth/auth-selectors';
+import { useSelector } from 'react-redux';
+
 
 export default function HomePage() {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
     <>
-      <Box
-        sx={{
-          alignItems: 'center',
-          fontSize: '22px',
-          padding: 8,
-        }}
-      >
-        You can make contacts after registration
-      </Box>
+      {isLoggedIn ? (
+        <Box
+          sx={{
+            textAlign: 'center',
+            fontSize: '30px',
+            padding: 8,
+          }}
+        >
+          Welcome on our web site, where you can make your contacts
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            textAlign: 'center',
+            fontSize: '30px',
+            padding: 8,
+          }}
+        >
+          You can make contacts after
+          <Link
+            href="/goit-react-hw-08-phonebook/register"
+            color="primary"
+            underline="hover"
+            sx={{ margin: '0 5px' }}
+          >
+            sign up
+          </Link>
+          or
+          <Link
+            href="/goit-react-hw-08-phonebook/login"
+            color="primary"
+            underline="hover"
+            sx={{ margin: '0 5px' }}
+          >
+            log in
+          </Link>
+        </Box>
+      )}
       <Box
         sx={{
           paddingTop: 8,

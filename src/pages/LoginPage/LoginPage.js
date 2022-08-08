@@ -31,8 +31,6 @@ export default function LoginPage() {
 
   return (
     <div className={styles.container}>
-      {/* <Container>
-       <Row className="justify-content-center"> */}
       <div className={styles.form}>
         <Box
           onSubmit={handleSubmit}
@@ -40,13 +38,12 @@ export default function LoginPage() {
           sx={{
             '& > :not(style)': { m: 1 },
           }}
-          noValidate
           autoComplete="off"
         >
           <h1>Login page</h1>
           <FormGroup>
             <FormControl>
-              <FormLabel>Email address</FormLabel>
+              <FormLabel sx={{ marginTop: '20px' }}>Email address</FormLabel>
 
               <TextField
                 type="email"
@@ -57,7 +54,7 @@ export default function LoginPage() {
               />
             </FormControl>
             <FormControl>
-              <FormLabel>Password</FormLabel>
+              <FormLabel sx={{ marginTop: '20px' }}>Password</FormLabel>
 
               <TextField
                 type="password"
@@ -67,14 +64,20 @@ export default function LoginPage() {
                 label="Password"
               />
             </FormControl>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <Button variant="contained" type="submit" sx={{ marginTop: '40px', width: '200px' }}>
+                Log in
+              </Button>
+            </Box>
           </FormGroup>
         </Box>
       </div>
-      {/* </Row>
-    </Container> */}
     </div>
   );
 }

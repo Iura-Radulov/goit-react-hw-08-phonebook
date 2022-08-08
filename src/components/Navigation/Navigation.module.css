@@ -1,10 +1,15 @@
 .link {
   display: inline-block;
+  font-size: 22px;
   text-decoration: none;
   padding: 12px;
-  font-weight: 700;
+  margin-left: 10px;
+  font-weight: 600;
   color: #2a363b;
 }
-.link.active {
-  color: #2196f3;
+@media (max-width: 600px) {
+  .link {
+    margin-right: 10px;
+    padding: 0;
+  }
 }

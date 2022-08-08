@@ -1,24 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-// import styles from './AuthNav.module.css';
+import s from './AuthNav.module.css';
 
-const styles = {
-  link: {
-    display: 'inline-block',
-    textDecoration: 'none',
-    padding: 12,
-    fontWeight: 600,
-    fontSize: '22px',
-    color: '#2A363B',
-  },
-  activeLink: {
-    color: '#4e52cd',
-    display: 'inline-block',
-    padding: 12,
-    textDecoration: 'none',
-    fontWeight: 600,
-    fontSize: '22px',
-  },
+const activeLink = {
+  color: '#4e52cd',
 };
 
 export default function AuthNav() {
@@ -26,12 +11,17 @@ export default function AuthNav() {
     <div>
       <NavLink
         to="/register"
-        style={({ isActive }) => (isActive ? styles.activeLink : styles.link)}
+        className={s.link}
+        style={({ isActive }) => (isActive ? activeLink : undefined)}
       >
-        Registration
+        SIGN UP
       </NavLink>
-      <NavLink to="/login" style={({ isActive }) => (isActive ? styles.activeLink : styles.link)}>
-        Login
+      <NavLink
+        to="/login"
+        className={s.link}
+        style={({ isActive }) => (isActive ? activeLink : undefined)}
+      >
+        LOG IN
       </NavLink>
     </div>
   );

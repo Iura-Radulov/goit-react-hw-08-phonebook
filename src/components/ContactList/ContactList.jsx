@@ -1,10 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { getFilter } from 'redux/contactSelectors';
-
 import { useFetchContactsQuery } from 'redux/contactApiSlice';
 import ContactItem from 'components/ContactItem';
-import s from './ContactList.module.css';
 import { Oval } from 'react-loader-spinner';
 
 const ContactList = () => {
@@ -18,7 +16,7 @@ const ContactList = () => {
   return (
     <div>
       {visibleNames && (
-        <ul className={s.list}>
+        <ul>
           {visibleNames.map(({ id, number, name }) => (
             <ContactItem key={id} name={name} phone={number} id={id} />
           ))}

@@ -20,3 +20,9 @@ code {
 .title {
   font-size: 28px;
 }
+ul {
+  padding-left: 0;
+}
+a {
+  padding: 0;
+}

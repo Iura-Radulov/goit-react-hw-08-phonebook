@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { Skeleton } from '@mui/material';
 import ContactsPage from 'pages/ContactsPage/ContactsPage';
 import HomePage from 'pages/HomePage/HomePage';
 
@@ -20,11 +21,11 @@ export const App = () => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
   return isFetchingCurrentUser ? (
-    <h1>Показываем React Skeleton</h1>
+    <Skeleton variant="wave" height={200} style={{ marginTop: 30 }} />
   ) : (
     <>
       <AppBar />
-      <Suspense fallback={<p>Загружаем...</p>}>
+      <Suspense fallback={<Skeleton variant="wave" height={100} />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/contacts" element={isLoggedIn ? <ContactsPage /> : <HomePage />} />

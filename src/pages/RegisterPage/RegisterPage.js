@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations';
 import styles from './RegisterPage.module.css';
+import { Box, FormGroup, FormControl, FormLabel, TextField, Button } from '@mui/material';
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
@@ -31,27 +32,64 @@ export default function RegisterPage() {
   };
 
   return (
-    <div>
-      <h1>Страница регистрации</h1>
+    <div className={styles.container}>
+      <div className={styles.form}>
+        <Box
+          onSubmit={handleSubmit}
+          component="form"
+          sx={{
+            '& > :not(style)': { m: 1 },
+          }}
+          autoComplete="off"
+        >
+          <h1>Register page</h1>
+          <FormGroup>
+            <FormControl>
+              <FormLabel sx={{ marginTop: '20px' }}>Email address</FormLabel>
+              <TextField
+                type="text"
+                name="name"
+                value={name}
+                onChange={handleChange}
+                label="Enter name"
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel sx={{ marginTop: '20px' }}>Email address</FormLabel>
 
-      <form onSubmit={handleSubmit} className={styles.form} autoComplete="off">
-        <label className={styles.label}>
-          Имя
-          <input type="text" name="name" value={name} onChange={handleChange} />
-        </label>
+              <TextField
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleChange}
+                label="Enter email"
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel sx={{ marginTop: '20px' }}>Password</FormLabel>
 
-        <label className={styles.label}>
-          Почта
-          <input type="email" name="email" value={email} onChange={handleChange} />
-        </label>
-
-        <label className={styles.label}>
-          Пароль
-          <input type="password" name="password" value={password} onChange={handleChange} />
-        </label>
-
-        <button type="submit">Зарегистрироваться</button>
-      </form>
+              <TextField
+                type="password"
+                name="password"
+                value={password}
+                onChange={handleChange}
+                label="Password"
+              />
+            </FormControl>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <Button variant="contained" type="submit" sx={{ marginTop: '40px', width: '200px' }}>
+                Sign up
+              </Button>
+            </Box>
+          </FormGroup>
+        </Box>
+      </div>
     </div>
   );
 }

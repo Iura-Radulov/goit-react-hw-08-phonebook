@@ -1,9 +1,20 @@
-.form {
-  width: 320;
+.container {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  height: 100vh;
+  background-image: url(https://previews.123rf.com/images/mingirov/mingirov2002/mingirov200200873/141015630-black-phone-book-icon-isolated-seamless-pattern-on-white-background-address-book-telephone-directory.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.label {
-  display: 'flex';
-  flex-direction: 'column';
-  margin-bottom: 15;
+.form {
+  width: 500px;
+  max-width: 100%;
+  height: 540px;
+  padding: 40px;
+  background-color: #f2f5f9;
+  border: 2px solid #9088ff;
+  border-radius: 5px;
+  text-align: center;
 }
