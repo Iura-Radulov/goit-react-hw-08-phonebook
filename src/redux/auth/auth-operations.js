@@ -20,6 +20,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
     return data;
   } catch (error) {
     Notiflix.Notify.failure(`Sorry, something went wrong. ${error.message} Please try again.`);
+    return error.response.status;
   }
 });
 
@@ -30,6 +31,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
     return data;
   } catch (error) {
     Notiflix.Notify.failure(`Sorry, something went wrong. ${error.message} Please try again.`);
+    return error.response.status;
   }
 });
 
@@ -39,6 +41,7 @@ const logOut = createAsyncThunk('auth/logout', async () => {
     token.unset();
   } catch (error) {
     Notiflix.Notify.failure(`Sorry, something went wrong. ${error.message} Please try again.`);
+    return error.response.status;
   }
 });
 

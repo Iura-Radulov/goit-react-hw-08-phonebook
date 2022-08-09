@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getFilter } from 'redux/contactSelectors';
+import { getFilter } from 'redux/filterSelectors';
 import { useFetchContactsQuery } from 'redux/contactApiSlice';
 import ContactItem from 'components/ContactItem';
 import { Oval } from 'react-loader-spinner';

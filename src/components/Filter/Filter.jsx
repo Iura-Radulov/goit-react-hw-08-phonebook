@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getFilter } from 'redux/contactSelectors';
-import { changeFilter } from 'redux/contactSlice';
+import { getFilter } from 'redux/filterSelectors';
+import { changeFilter } from 'redux/filterSlice';
 import { Box, FormControl, FormLabel, TextField } from '@mui/material';
 
 const Filter = () => {

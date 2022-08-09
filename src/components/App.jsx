@@ -5,7 +5,8 @@ import { Route, Routes } from 'react-router-dom';
 import { Skeleton } from '@mui/material';
 import ContactsPage from 'pages/ContactsPage/ContactsPage';
 import HomePage from 'pages/HomePage/HomePage';
-
+import PublicRoute from './PublicRoute';
+import PrivateRoute from './PrivateRoute';
 import AppBar from './AppBar';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
@@ -15,7 +16,6 @@ import authOperations from 'redux/auth/auth-operations';
 export const App = () => {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -27,10 +27,42 @@ export const App = () => {
       <AppBar />
       <Suspense fallback={<Skeleton variant="wave" height={100} />}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/contacts" element={isLoggedIn ? <ContactsPage /> : <HomePage />} />
-          <Route path="/register" element={isLoggedIn ? <HomePage /> : <RegisterPage />} />
-          <Route path="/login" element={isLoggedIn ? <HomePage /> : <LoginPage />} />
+          <Route
+            path="/"
+            exact
+            element={
+              <PublicRoute>
+                <HomePage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute>
+                <ContactsPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/register"
+            exact
+            element={
+              <PublicRoute restricted>
+                <RegisterPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/login"
+            exact
+            element={
+              <PublicRoute restricted>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+          <Route path="*" element={<HomePage />} />
         </Routes>
       </Suspense>
     </>

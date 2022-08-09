@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations';
+import authSelectors from 'redux/auth/auth-selectors';
 import styles from './LoginPage.module.css';
 
 import { Box, FormGroup, FormControl, FormLabel, TextField, Button } from '@mui/material';
@@ -10,6 +11,7 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const isError = useSelector(authSelectors.getError);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -25,8 +27,10 @@ export default function LoginPage() {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(authOperations.logIn({ email, password }));
-    setEmail('');
-    setPassword('');
+    if (isError) {
+      setEmail('');
+      setPassword('');
+    }
   };
 
   return (
@@ -51,6 +55,8 @@ export default function LoginPage() {
                 value={email}
                 onChange={handleChange}
                 label="Enter email"
+                helperText="Wrong email or password"
+                required
               />
             </FormControl>
             <FormControl>
@@ -62,6 +68,8 @@ export default function LoginPage() {
                 value={password}
                 onChange={handleChange}
                 label="Password"
+                helperText="Wrong email or password"
+                required
               />
             </FormControl>
             <Box

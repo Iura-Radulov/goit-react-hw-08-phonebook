@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations';
+import authSelectors from 'redux/auth/auth-selectors';
 import styles from './RegisterPage.module.css';
 import { Box, FormGroup, FormControl, FormLabel, TextField, Button } from '@mui/material';
 
@@ -9,6 +10,8 @@ export default function RegisterPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
+  const isError = useSelector(authSelectors.getError);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -26,9 +29,15 @@ export default function RegisterPage() {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(authOperations.register({ name, email, password }));
-    setName('');
-    setEmail('');
-    setPassword('');
+
+    if (password.length < 7) {
+      setErrorMessage('Your password must be at least 7 characters');
+    }
+    if (isError) {
+      setName('');
+      setEmail('');
+      setPassword('');
+    }
   };
 
   return (
@@ -45,13 +54,14 @@ export default function RegisterPage() {
           <h1>Register page</h1>
           <FormGroup>
             <FormControl>
-              <FormLabel sx={{ marginTop: '20px' }}>Email address</FormLabel>
+              <FormLabel sx={{ marginTop: '20px' }}>Name</FormLabel>
               <TextField
                 type="text"
                 name="name"
                 value={name}
                 onChange={handleChange}
                 label="Enter name"
+                required
               />
             </FormControl>
             <FormControl>
@@ -63,6 +73,7 @@ export default function RegisterPage() {
                 value={email}
                 onChange={handleChange}
                 label="Enter email"
+                required
               />
             </FormControl>
             <FormControl>
@@ -74,6 +85,8 @@ export default function RegisterPage() {
                 value={password}
                 onChange={handleChange}
                 label="Password"
+                helperText={errorMessage}
+                required
               />
             </FormControl>
             <Box

@@ -2,7 +2,6 @@ import { Box, Link } from '@mui/material';
 import authSelectors from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
 
-
 export default function HomePage() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
@@ -15,7 +14,7 @@ export default function HomePage() {
             padding: 8,
           }}
         >
-          Welcome on our web site, where you can make your contacts
+          Welcome on our website, where you can make your contacts
         </Box>
       ) : (
         <Box
