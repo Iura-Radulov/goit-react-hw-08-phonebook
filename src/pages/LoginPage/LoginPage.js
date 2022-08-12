@@ -11,6 +11,7 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
   const isError = useSelector(authSelectors.getError);
 
   const handleChange = ({ target: { name, value } }) => {
@@ -30,6 +31,7 @@ export default function LoginPage() {
     if (isError) {
       setEmail('');
       setPassword('');
+      setErrorMessage('Wrong email or password');
     }
   };
 
@@ -55,7 +57,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={handleChange}
                 label="Enter email"
-                helperText="Wrong email or password"
+                helperText={errorMessage}
                 required
               />
             </FormControl>
@@ -68,7 +70,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={handleChange}
                 label="Password"
-                helperText="Wrong email or password"
+                helperText={errorMessage}
                 required
               />
             </FormControl>
